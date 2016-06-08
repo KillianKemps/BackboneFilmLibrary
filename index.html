@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BackboneFilmLibrary</title>
+</head>
+
+<style>
+  img {
+    max-width: 200px;
+  }
+</style>
+
+<body>
+  <div id="app">
+
+    <div class="movies">
+
+      <h1>Film list</h1>
+
+      <ul class='movie-list'>
+      </ul>
+
+      <form action="#">
+        <input type="text" placeholder="title" class="movie-title" required>
+        <input type="text" placeholder="Poster URL" class="movie-poster">
+
+        <label for="movie-type">Type</label>
+        <select id="movie-type" name="movie-type">
+          <option value="Horror">Horror</option>
+          <option value="Action">Action</option>
+          <option value="Romance">Romance</option>
+          <option value="Documentary">Documentary</option>
+        </select>
+
+        <label for="movie-notation">Note</label>
+        <select id="movie-notation" name="movie-notation">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <input type="submit" value="Add">
+      </form>
+
+    </div>
+
+    <div class="stats">
+      <p>Je possede <span class="movie-total">0</span> films</p>
+      <p>J'en ai vu <span class="movie-seen-total">0</span></p>
+      <p>Je n'en ai pas vu <span class="movie-unseen-total">0</span></p>
+    </div>
+
+  </div>
+
+</body>
+</html>
