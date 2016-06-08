@@ -59,7 +59,7 @@
   <script id="movie-template-handlebars" type="text/x-handlebars-template">
 
     {{#each this}}
-      <li>
+      <li data-index={{@index}}>
         <h2>{{this.title}}</h2>
         <img src="{{this.poster}}" alt="">
         <p>Type: {{this.type}}</p>
@@ -68,7 +68,7 @@
           <label for="seen">Seen</label>
           <input type="radio" class="movie-seen" name="movie" value="seen" checked="{{this.seen}}">
           <label for="not-seen">Not seen</label>
-          <input type="radio" class="movie-unseen" name="movie" value="unseen" checked="{{!this.seen}}">
+          <input type="radio" class="movie-unseen" name="movie" value="unseen" {{#unless this.seen }} checked="true" {{/unless}}>
         </form>
       </li>
     {{/each}}

@@ -4,6 +4,7 @@ var MovieListView = Backbone.View.extend({
 
   events: {
     'submit form': 'addMovie',
+    'change input[type="radio"]': 'seeMovie'
   },
 
   addMovie: function(event) {
@@ -28,6 +29,27 @@ var MovieListView = Backbone.View.extend({
 
     this.render();
     console.log('Rendering after add');
+  },
+
+  seeMovie: function(event) {
+    var $input = $(event.currentTarget);
+    var inputValue = $input.val();
+
+    // Get movie index
+    var movieIndex = $input.parents('li').attr('data-index');
+
+    // Get concerned movie
+    var targetModel = this.myMovieCollection.at(movieIndex);
+
+    // Update seen property and save it
+    if(targetModel) {
+      targetModel.set({
+        seen: inputValue === 'seen'
+      });
+      targetModel.save();
+    }
+
+    this.render();
   },
 
   templateHandlebars: Handlebars.compile(
