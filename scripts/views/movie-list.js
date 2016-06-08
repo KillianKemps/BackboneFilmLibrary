@@ -67,11 +67,21 @@ var MovieListView = Backbone.View.extend({
   render: function() {
     var $renderTarget = this.$('.movie-list');
 
+    var $movieTotal = this.$('.movie-total');
+    var $movieSeenTotal = this.$('.movie-seen-total');
+    var $movieUnseenTotal = this.$('.movie-unseen-total');
+
     // Get movies to be displayed
     var allMyMovies = this.myMovieCollection.toJSON();
 
     $renderTarget.html(
       this.templateHandlebars(allMyMovies)
     );
+
+    var seenMovies = this.myMovieCollection.where({seen: true});
+
+    $movieTotal.text(allMyMovies.length);
+    $movieSeenTotal.text(seenMovies.length);
+    $movieUnseenTotal.text(allMyMovies.length - seenMovies.length);
   }
 });
