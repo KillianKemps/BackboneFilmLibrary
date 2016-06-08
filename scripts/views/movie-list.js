@@ -4,7 +4,8 @@ var MovieListView = Backbone.View.extend({
 
   events: {
     'submit form': 'addMovie',
-    'change input[type="radio"]': 'seeMovie'
+    'change input[type="radio"]': 'seeMovie',
+    'click .order-button': 'changeMovieOrder'
   },
 
   addMovie: function(event) {
@@ -49,6 +50,14 @@ var MovieListView = Backbone.View.extend({
       targetModel.save();
     }
 
+    this.render();
+  },
+
+  changeMovieOrder: function() {
+    this.myMovieCollection.comparator = function(first, second) {
+      return first.get('notation') - second.get('notation');
+    }
+    this.myMovieCollection.sort();
     this.render();
   },
 
