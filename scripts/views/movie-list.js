@@ -26,7 +26,12 @@ var MovieListView = Backbone.View.extend({
     this.myMovieCollection.add(newMovieModel);
 
     this.render();
+    console.log('Rendering after add');
   },
+
+  templateHandlebars: Handlebars.compile(
+    $('#movie-template-handlebars').html()
+  ),
 
   initialize: function() {
     // Set movie instance
@@ -36,5 +41,13 @@ var MovieListView = Backbone.View.extend({
   },
 
   render: function() {
+    var $renderTarget = this.$('.movie-list');
+
+    // Get movies to be displayed
+    var allMyMovies = this.myMovieCollection.toJSON();
+
+    $renderTarget.html(
+      this.templateHandlebars(allMyMovies)
+    );
   }
 });

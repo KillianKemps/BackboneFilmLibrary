@@ -56,6 +56,24 @@
 
   </div>
 
+  <script id="movie-template-handlebars" type="text/x-handlebars-template">
+
+    {{#each this}}
+      <li>
+        <h2>{{this.title}}</h2>
+        <img src="{{this.poster}}" alt="">
+        <p>Type: {{this.type}}</p>
+        <p>Note: {{this.notation}}</p>
+        <form>
+          <label for="seen">Seen</label>
+          <input type="radio" class="movie-seen" name="movie" value="seen" checked="{{this.seen}}">
+          <label for="not-seen">Not seen</label>
+          <input type="radio" class="movie-unseen" name="movie" value="unseen" checked="{{!this.seen}}">
+        </form>
+      </li>
+    {{/each}}
+  </script>
+
   <!-- LIB -->
   <script src="scripts/lib/jquery.min.js"></script>
   <script src="scripts/lib/underscore.min.js"></script>
