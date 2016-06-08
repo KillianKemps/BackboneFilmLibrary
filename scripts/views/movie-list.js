@@ -70,6 +70,7 @@ var MovieListView = Backbone.View.extend({
     var $movieTotal = this.$('.movie-total');
     var $movieSeenTotal = this.$('.movie-seen-total');
     var $movieUnseenTotal = this.$('.movie-unseen-total');
+    var $movieAverageNotation = this.$('.movie-average-notation');
 
     // Get movies to be displayed
     var allMyMovies = this.myMovieCollection.toJSON();
@@ -79,9 +80,15 @@ var MovieListView = Backbone.View.extend({
     );
 
     var seenMovies = this.myMovieCollection.where({seen: true});
+    var notationSum = _.reduce(
+      _.pluck(allMyMovies, 'notation'),
+      function(memo, num){ return memo + num; },
+      0
+    );
 
     $movieTotal.text(allMyMovies.length);
     $movieSeenTotal.text(seenMovies.length);
     $movieUnseenTotal.text(allMyMovies.length - seenMovies.length);
+    $movieAverageNotation.text(notationSum / allMyMovies.length);
   }
 });
