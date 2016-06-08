@@ -24,6 +24,7 @@ var MovieListView = Backbone.View.extend({
     });
 
     this.myMovieCollection.add(newMovieModel);
+    newMovieModel.save();
 
     this.render();
     console.log('Rendering after add');
@@ -36,6 +37,7 @@ var MovieListView = Backbone.View.extend({
   initialize: function() {
     // Set movie instance
     this.myMovieCollection = new MovieCollection();
+    this.myMovieCollection.fetch();
 
     this.render();
   },
